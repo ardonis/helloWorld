@@ -38,3 +38,8 @@ for x in randNums:
         med = med+1
 
 print("kis számok: {}\nközepes számok: {}".format(low, med))
+
+
+"HF: 1950-ben betettem pénzt a bankba, kamat 2%"
+"30 véletlen szám 50-100. páros vagy páratlan a több?"
+"beadott szóban az 'e' -> '?'"
