@@ -43,3 +43,26 @@ print("kis számok: {}\nközepes számok: {}".format(low, med))
 "HF: 1950-ben betettem pénzt a bankba, kamat 2%"
 "30 véletlen szám 50-100. páros vagy páratlan a több?"
 "beadott szóban az 'e' -> '?'"
+
+#2018. 09.08
+
+gyumolcsok = open("gyumolcsok.txt", "r", encoding="utf-8")
+
+lista = [x.rstrip() for x in gyumolcsok.readlines()]
+
+print(lista)
+
+gyumolcsok.close()
+
+
+ki = open("ki.txt", "w+", encoding="utf-8")
+
+lastnums = [0, 1, 0]
+for i in range(20):
+    lastnums[2] = lastnums[0] + lastnums[1]
+    lastnums[0] = lastnums[1]
+    lastnums[1] = lastnums[2]
+
+    ki.write(str(i) * lastnums[2])
+
+ki.close()
