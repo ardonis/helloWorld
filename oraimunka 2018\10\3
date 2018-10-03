@@ -1,0 +1,38 @@
+file = open("C:\\Users\\LAfakt2\\scripts\\verseny\\v.txt", encoding="utf-8")
+
+versenyzok = [x.rstrip() for x in file.readlines()]
+
+#print([str(x) + ". " + str(versenyzok[x]) for x in range(len(versenyzok))])
+
+# hány találata volt az x-edik vesenyzőnek
+
+file.close()
+
+
+def search(x, c):
+    t = 0
+    for i in range(len(x)):
+        if x[i] == c:
+            t += 1
+    return t
+
+
+print(search(versenyzok[int(input("versenyzoszam: "))+1], "+"))
+
+print(int(sum([search(x, "+") for x in versenyzok])))
+
+print(versenyzok[int(input("versenyzoszam: ")) - 1]
+      [int(input("lovesszam: ")) - 1])
+
+NewFile = open("C:\\Users\\LAfakt2\\scripts\\verseny\\e.txt", "w+", encoding = "utf-8")
+
+
+szoveg = "összesen {} találat volt\nversenyzők találatai:\n".format(sum([search(x, "+") for x in versenyzok]))
+
+for i in versenyzok:
+    szoveg = szoveg + str(search(versenyzok[int(i)], "+")) + "\n"
+
+NewFile.write()
+
+
+hf: két file soronként összefűzése, új fileba kiírása
