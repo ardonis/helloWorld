@@ -1,0 +1,15 @@
+import sys
+
+
+vn = []
+kn = []
+
+with open(sys.argv[1], encoding = "utf-8") as f1, open(sys.argv[2], encoding = "utf-8") as f2:
+    vn = [x.rstrip() for x in f1.readlines()]
+    kn = [x.rstrip() for x in f2.readlines()]
+
+tn = []
+for i in range(len(kn)):
+    tn.append(str(vn[i]) + " " + str(kn[i]) + "\n")
+
+open("outputfile.txt", "w+", encoding = "utf-8").writelines(tn)
