@@ -1,0 +1,83 @@
+import time
+import os
+
+
+if os.path.isfile("C:\\Users\\LAfakt2\\scripts\\szinhaz\\fajlki.txt"):
+    foglaltsag = open(
+        "C:\\Users\\LAfakt2\\scripts\\szinhaz\\fajlki.txt", "r", encoding="utf-8")
+else:
+    foglaltsag = open(
+        "C:\\Users\\LAfakt2\\scripts\\szinhaz\\foglaltsag.txt", "r", encoding="utf-8")
+
+kategoria = open(
+    "C:\\Users\\LAfakt2\\scripts\\szinhaz\\kategoria.txt", "r", encoding="utf-8")
+
+
+f = [x.rstrip() for x in foglaltsag.readlines()]
+k = [x.rstrip() for x in kategoria.readlines()]
+
+nf = []
+tnf = []
+for x in f:
+    for y in x:
+        tnf.append(y)
+    nf.append(tnf)
+    tnf = []
+
+nk = []
+tnk = []
+for x in k:
+    for y in x:
+        tnk.append(y)
+    nk.append(tnk)
+    tnk = []
+
+
+def foglal(oSz, sSz):
+    if nf[sSz - 1][oSz - 1] == "o":
+        nf[sSz - 1][oSz - 1] = "x"
+        print("Sikeres foglalás")
+    else:
+        print("Már foglalt")
+
+
+def szabadHelyekSorban(sorszam):
+    db = 0
+    for x in nf[sorszam - 1]:
+        if x == "o":
+            db += 1
+
+    return db
+
+
+for x in nf:
+    print(str(x))
+print("\n")
+for x in nk:
+    print(str(x))
+
+time.sleep(1)
+
+os.system("cls")
+
+foglal(3, 1)
+
+for x in nf:
+    print(str(x))
+
+print(szabadHelyekSorban(4))
+
+
+ki = open("C:\\Users\\LAfakt2\\scripts\\szinhaz\\fajlki.txt",
+          "w+", encoding="utf-8")
+
+for x in nf:
+    ki.writelines(x)
+    ki.write("\n")
+
+
+ki.close()
+foglaltsag.close()
+kategoria.close()
+
+#hf: melyik kategóriából hány van? http://users.atw.hu/sulidoc/file/kategoria.txt
