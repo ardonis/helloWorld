@@ -1,0 +1,14 @@
+f = open("C:\\Users\\Zsolti\\Documents\\scripts\\python\\hf20181017\\kategoriak.txt", "r", encoding = "utf-8")
+
+
+def countinlist(ch):
+
+    charnum = 0
+    for x in f.readlines():
+        charnum += str(x).count(ch)
+
+    return charnum
+
+print(countinlist("2"))
+
+f.close()
