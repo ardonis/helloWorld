@@ -1,0 +1,62 @@
+f = open("C:\\Users\\LAfakt2\\scripts\\szinhaz\\kategoria.txt", "r", encoding = "utf-8")
+Ktomb = [x.rstrip() for x in f.readlines()]
+f.close()
+
+g = open("C:\\Users\\LAfakt2\\scripts\\szinhaz\\foglaltsag.txt", "r", encoding = "utf-8")
+Ftomb = [x.rstrip() for x in g.readlines()]
+g.close()
+
+
+def katAra(x):
+    return 1000 - ((x - 1) * 100)
+
+
+bevetel = int(0)
+for x in range(len(Ftomb)):
+    for y in range(len(Ftomb[x])):
+        if Ftomb[x][y] == "o":
+            bevetel += katAra(int(Ktomb[x][y]))
+
+print(bevetel)
+
+
+tomb = [15, 32, 52, 31, 3, 6, 412, 53]
+def maxmin(betomb):
+    kicsi = betomb[0]
+    nagy = 0
+    nagyszam = 0
+    kisszam = 0
+    i = 0
+    for x in betomb:
+        if x > nagy:
+            nagy = x
+            nagyszam = i
+
+        if x < kicsi:
+            kicsi = x
+            kisszam = i
+
+        i+=1
+    
+    return [nagy, kicsi, nagyszam, kisszam]
+
+rt = maxmin(tomb)
+print("A legnagyobb szám a tömbmen: {}\nA legkisebb: {}".format(rt[0], rt[1]))
+
+dbtomb = []
+dbszam = 0
+for x in Ftomb:
+    dbszam = 0
+    for y in x:
+        if y == "x":
+            dbszam += 1
+    dbtomb.append(dbszam)
+
+rt = maxmin(dbtomb)
+
+Ftomb
+
+
+print("a(z) {}. sorban ülnek a legtöbben és a(z) {}. sorban a legkevesebben".format(rt[2] + 1, rt[3] + 1))
+
+#hf: 1. melyik magánhangzóból hány van  2. melyikből van a legtöbb  3. milyen hosszú a szöveg   4. mekkora a magánhangzók aránya a hosszhoz viszonyítva
