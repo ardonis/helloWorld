@@ -1,0 +1,95 @@
+""" class student:
+    def __init__(self, _nev, _osztaly, _atlag):
+        self.nev = _nev
+        self.osztaly = _osztaly
+        self.atlag = _atlag
+
+    nev= ""
+    osztaly = ""
+    atlag = 0.0
+
+s1 = student("Kis Laci", "12.C", 4.8)
+s2 = student("Nagy Géza", "12.A", 4.35)
+s3 = student("Bí gabi", "12.B", 4.75)
+
+osztaly = [s1, s2, s3]
+
+mx = 0
+mp = ""
+
+for x in osztaly:
+    if x.atlag > mx:
+        mx = x.atlag
+        mp = x.nev
+
+i = 0
+a = 0
+for x in osztaly:
+    a += x.atlag
+    i += 1
+
+osztalyatlag = a/i
+
+print(str(mx) + " " + str(mp))  
+print(osztalyatlag) """
+
+f = open("C:\\Users\\LAfakt2\\scripts\\texts\\1024.txt", "r", encoding = "utf-8")
+
+_tomb = [x.rstrip() for x in f.readlines()]
+
+f.close()
+
+class jelolt:
+    korzet = ""
+    szavazat = 0
+    nev = ""
+    part = ""
+
+    def __init__(self, _korzet, _szavazat, _nev, _part):
+        self.korzet = _korzet
+        self.szavazat= int(_szavazat)
+        self.nev= _nev
+        self.part= _part
+
+
+jeloltek = []
+for x in _tomb:
+    sliced = x.split()
+    jeloltek.append(jelolt(sliced[0], sliced[1], str(sliced[2]) + " " + str(sliced[3]), sliced[4]))
+
+""" for x in jeloltek:
+    print("körzet: {}\t{}\t\tpárt: {}\tszavazatok: {}".format(x.korzet, x.nev, x.part, x.szavazat)) """
+
+#hányan vannak a ZEP pártból?
+
+""" db = 0
+for x in jeloltek:
+    if x.part == "ZEP":
+        db += 1
+
+print(db) """
+
+#hány szavazata van a ZEP pártnak
+
+
+def partszavazat(part):
+    szvzk = 0
+    for x in jeloltek:
+        if x.part == part:
+            szvzk += x.szavazat
+    return szvzk
+
+"""print("össz szavazatok: "+str(partszavazat("ZEP")))"""
+
+#hány szavazatot kapott a gyep és hep párt együtt
+
+print(str(partszavazat("GYEP") + partszavazat("HEP")))
+
+#legtöbb szavazatot ki kapta
+
+db = 0
+for x in jeloltek:
+    if x.szavazat > db:
+        db = x.szavazat
+
+print(db) 
