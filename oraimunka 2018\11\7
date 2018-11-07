@@ -1,0 +1,89 @@
+import random
+
+
+feladatszam = 1
+def kövfeladat():
+    global feladatszam
+    print("\n\n" + str(feladatszam) + ".feladat\n")
+    feladatszam += 1
+
+
+class csapat:
+    jelige = ""
+    pontszam = 0
+    szerepelt = False
+    azonosito = ""
+
+    def __init__(self, _jelige, _pontszam, _szerepelt):
+        self.jelige = _jelige
+        self.pontszam = int(_pontszam)
+        if _szerepelt =="IGEN":
+            self.szerepelt = True
+        else:
+            self.szerepelt = False
+        self.azonosito = _jelige[0] + str(random.randint(100, 999))
+
+
+with open("C:\\Users\\LAfakt2\\scripts\\texts\\verseny.txt", "r", encoding = "utf-8") as infile:
+    lines = [x.rstrip() for x in infile.readlines()]
+
+
+csapatok = []
+
+for x in lines:
+    sliced = x.split()
+    csapatok.append(csapat(sliced[0], sliced[1], sliced[2]))
+
+kövfeladat()
+
+for x in csapatok:
+    print(x.jelige + x.azonosito)
+
+
+#2. feladat
+kövfeladat()
+db = 0
+for x in csapatok:
+    if x.szerepelt == True:
+        db += 1
+
+print(db)
+
+#3. feladat
+kövfeladat()
+print(str(sum([x.pontszam for x in csapatok])/len(csapatok)))
+
+#4. feladat
+kövfeladat()
+szereplo_csapatok = [x for x in csapatok if x.szerepelt == True]
+
+minim = 99999
+minnev = ""
+for x in szereplo_csapatok:
+    if x.pontszam < minim:
+        minnev = x.jelige
+        minim = x.pontszam
+
+print(minnev)
+
+#5. feladat
+kövfeladat()
+inp = input("jelige: ")
+
+for x in csapatok:
+    if x.jelige == inp:
+        print(x.azonosito)
+
+#6.feladat
+kövfeladat()
+
+for x in csapatok:
+    if x.pontszam > 90:
+        print("igen, volt")
+        break
+
+#7. feladat
+kövfeladat()
+
+for x in csapatok:
+    print("{} \t{}\t{}\t{}".format(x.jelige, x.pontszam, x.szerepelt, x.azonosito))
