@@ -1,0 +1,43 @@
+with open("C:\\Users\\LAfakt2\\Downloads\\otos.csv") as f:
+    lst = [x.rstrip() for x in f.readlines()]
+
+
+class huzas:
+    ev, het, sz1, sz2, sz3, sz4, sz5, szamok = 0, 0, 0, 0, 0, 0, 0, []
+
+    def __init__(self, _lst):
+        self.ev = int(_lst.split(";")[0])
+        self.het = int(_lst.split(";")[1])
+        self.sz1 = int(_lst.split(";")[2])
+        self.sz2 = int(_lst.split(";")[3])
+        self.sz3 = int(_lst.split(";")[4])
+        self.sz4 = int(_lst.split(";")[5])
+        self.sz5 = int(_lst.split(";")[6])
+        self.szamok = [self.sz1, self.sz2, self.sz3, self.sz4, self.sz5]
+         
+
+
+huzasok = []
+for x in lst:
+    huzasok.append(huzas(x))
+
+"""for x in huzasok:
+    print("{}\t{}\t{}\t{}\t{}\t{}\t{}".format(
+        x.ev, x.het, x.sz1, x.sz2, x.sz3, x.sz4, x.sz5))"""
+
+
+szamok = [0] * 99
+for x in huzasok:
+    _szamok = [x.sz1, x.sz2, x.sz3, x.sz4, x.sz5]
+    for x in _szamok:
+        szamok[x] += 1
+
+print(szamok)
+
+_osszeg = 0
+for x in huzasok:
+    _osszeg += x.sz1
+
+atlag = _osszeg/len(huzasok)
+
+print(atlag)
