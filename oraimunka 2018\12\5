@@ -1,0 +1,68 @@
+feladat = 0
+
+
+def ujfeladat():
+    global feladat
+    feladat += 1
+    print(str(feladat) + ". feladat")
+
+
+ujfeladat()
+with open("C:\\Users\\LAfakt2\\scripts\\orai munka\\oraimunka20181128\\telepulesek.txt", "r", encoding="utf-8") as f:
+    __l = f.readlines()
+
+
+class telepulesek:
+    def __init__(self, _irszam, _nev, _megye, _terulet, _nepesseg):
+        self.irszam = _irszam
+        self.nev = _nev
+        self.megye = _megye
+        self.terulet = int(_terulet)
+        self.nepesseg = int(_nepesseg)
+
+
+t = []
+_t = []
+addi = 0
+budapesti = 0
+for x in __l:
+    addi += 1
+    _t = x.split("\t")
+    t.append(telepulesek(_t[0], _t[1], _t[2], _t[3], _t[4]))
+    if x[0] == "1":
+        budapesti += 1
+
+
+ujfeladat()
+
+print(str(len(t) - budapesti) + " nem budapesti település van")
+
+ujfeladat()
+
+legn = t[0].terulet
+legk = t[0].terulet
+legnn = ""
+legkn = ""
+
+for x in t:
+    if x.terulet > legn:
+        legnn = x.nev
+        legn = x.terulet
+    elif x.terulet < legk:
+        legkn = x.nev
+        legk = x.terulet
+
+print("A legkisebb területű település {}, {} négyzetkilóméterrel".format(
+    str(legkn), str(legk)))
+print("A legnagyobb területű település {}, {} négyzetkilóméterrel".format(
+    str(legnn), str(legn)))
+
+ujfeladat()
+
+
+i = input("irányítószám: ")
+for x in t:
+    if x.irszam == i:
+        print(x.nev)
+        break
+
