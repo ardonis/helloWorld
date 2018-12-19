@@ -93,3 +93,25 @@ for x in jeloltek:
         db = x.szavazat
 
 print(db) 
+
+
+pt = [x.part for x in jeloltek]
+
+darab = {}
+for x in pt:
+    try:
+        darab[x] = darab[x] + 1       
+    except KeyError:
+        darab[x] = 1
+
+with open("C:\\Users\\LAfakt2\\scripts\\texts\\1024out.txt", "w", encoding = "utf-8") as f:
+    for x in darab:
+        f.write("{}\t{}\n".format(x, str(darab[x])))
+
+print(darab)
+
+pszav = {}
+for x in darab:
+    pszav[x] = partszavazat(x)
+
+print(pszav)
